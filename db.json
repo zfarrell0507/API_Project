@@ -9,7 +9,6 @@
         "fat": 0.16,
         "calories": 69,
         "sugar": 15.48
-        
     }, 
     {
         "id": 2,
@@ -30,7 +29,6 @@
         "fat": 0.1,
         "calories": 15,
         "sugar": 3.2
-        
     }, 
     {
         "id": 4,
@@ -45,13 +43,12 @@
     {
         "id": 5,
         "name": "Cherry",
-        "imgae": "https://images.unsplash.com/photo-1528821154947-1aa3d1b74941?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+        "image": "https://images.unsplash.com/photo-1528821154947-1aa3d1b74941?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
         "carbohydrates": 12,
         "protein": 1,
         "fat": 0.3,
         "calories": 50,
         "sugar": 8
-        
     }, 
     {
         "id": 6,
@@ -62,30 +59,26 @@
         "fat": 0.5,
         "calories": 61,
         "sugar": 9
-        
     }, 
     {
-        
         "id": 7,
         "name": "Lemon",
-        "Image": "https://images.unsplash.com/photo-1587486937303-32eaa2134b78?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=881&q=80",
+        "image": "https://images.unsplash.com/photo-1587486937303-32eaa2134b78?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=881&q=80",
         "carbohydrates": 9,
         "protein": 1.1,
         "fat": 0.3,
         "calories": 29,
         "sugar": 2.5
-        
     }, 
     {
-        "name": "Melon",
         "id": 8,
+        "name": "Melon",
         "image": "https://images.unsplash.com/photo-1563288525-8f1ee0f874a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         "carbohydrates": 8,
         "protein": 0,
         "fat": 0,
         "calories": 34,
         "sugar": 8
-        
     }, 
     {
         "id": 9,
