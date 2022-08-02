@@ -7,7 +7,7 @@ fetch('http://localhost:3000/Fruits')
     .then(fruits => {
         renderFruits(fruits)
         renderDetails(fruits[0])
-        fruitsArray = fruits
+        fruitsArray
     })
 
 function renderFruits(fruits) {
@@ -47,7 +47,7 @@ fruitForm.addEventListener('submit', (e) => {
         calories: e.target.calories.value,
         sugar: e.target.sugar.value
     }
-    //form.reset()
+    fruitForm.reset()
     fruitsArray.push(newFruit)
     renderFruits(fruitsArray)
 })
