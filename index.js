@@ -23,4 +23,12 @@ function renderDetails(fruit) {
     nameDis.textContent = fruit.name
     const carbs = document.querySelector('span#carbohydrates')
     carbs.textContent = fruit.carbohydrates
+    const protein = document.querySelector('span#protein')
+    protein.textContent = fruit.protein
+    const fat = document.querySelector('span#fat')
+    fat.textContent = fruit.fat
+    const calorie = document.querySelector('span#calories')
+    calorie.textContent = fruit.calories
+    const sugar = document.querySelector('span#sugar')
+    sugar.textContent = fruit.sugar
 }
