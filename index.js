@@ -1,10 +1,13 @@
 const list = document.querySelector('div#fruit-list')
+const fruitForm = document.getElementById('new-fruit')
+fruitsArray = []
 
 fetch('http://localhost:3000/Fruits')
     .then(resp => resp.json())
     .then(fruits => {
         renderFruits(fruits)
         renderDetails(fruits[0])
+        fruitsArray = fruits
     })
 
 function renderFruits(fruits) {
@@ -32,3 +35,19 @@ function renderDetails(fruit) {
     const sugar = document.querySelector('span#sugar')
     sugar.textContent = fruit.sugar
 }
+
+fruitForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    let newFruit = {
+        image: e.target.image.value,
+        name: e.target.name.value,
+        carbohydrates: e.target.carbohydrates.value,
+        protein: e.target.protein.value,
+        fat: e.target.new-fat.value,
+        calories: e.target.calories.value,
+        sugar: e.target.sugar.value
+    }
+    //form.reset()
+    fruitsArray.push(newFruit)
+    renderFruits(fruitsArray)
+})
