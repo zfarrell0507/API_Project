@@ -2,6 +2,7 @@ const list = document.querySelector('div#fruit-list')
 const fruitForm = document.getElementById('new-fruit')
 let fruitsArray = []
 let currentFruit = []
+let comboNames = []
 
 const add = document.getElementById('add_btn')
 add.addEventListener('click', () => fruitCombo(currentFruit))
@@ -17,6 +18,7 @@ let tProtein = 0
 let tFat = 0
 let tCal = 0
 let tSugar = 0
+const comboVal = document.getElementById('combo')
 //const divDetail = document.querySelector('div#fruit-detail')
 
 fetch('http://localhost:3000/Fruits')
@@ -57,6 +59,8 @@ function renderDetails(fruit) {
 
 function fruitCombo(currentFruit) {
     console.log(currentFruit)
+    comboNames.push(currentFruit.name)
+    console.log(comboNames)
     tCarbs += currentFruit.carbohydrates
     console.log(currentFruit.carbohydrates)
     console.log(tCarbs)
@@ -69,8 +73,15 @@ function fruitCombo(currentFruit) {
     totalCalories.textContent = tCal.toFixed(2)
     tSugar += currentFruit.sugar
     totalSugar.textContent = tSugar.toFixed(2)
+    let map = comboNames.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
+    //for (const [key, value] of Object.entries(map)) {
+    //comboVal.textContent = `${value}-${key}`
+    //}
+    console.log(map)
 }
 function removeFromCombo(currentFruit) {
+    //comboNames.push(currentFruit.name)
+    //console.log(comboNames)
     tCarbs -= currentFruit.carbohydrates
     console.log(currentFruit.carbohydrates)
     console.log(tCarbs)
