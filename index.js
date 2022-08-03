@@ -19,7 +19,6 @@ let tFat = 0
 let tCal = 0
 let tSugar = 0
 const comboVal = document.getElementById('combo')
-//const divDetail = document.querySelector('div#fruit-detail')
 
 fetch('http://localhost:3000/Fruits')
     .then(resp => resp.json())
@@ -74,14 +73,16 @@ function fruitCombo(currentFruit) {
     tSugar += currentFruit.sugar
     totalSugar.textContent = tSugar.toFixed(2)
     let map = comboNames.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
-    //for (const [key, value] of Object.entries(map)) {
-    //comboVal.textContent = `${value}-${key}`
-    //}
+    comboVal.textContent = (Object.entries(map))
     console.log(map)
 }
 function removeFromCombo(currentFruit) {
-    //comboNames.push(currentFruit.name)
-    //console.log(comboNames)
+    let index = comboNames.indexOf(currentFruit.name);
+    if (index > -1) {
+        comboNames.splice(index, 1);
+    }
+
+    console.log(comboNames)
     tCarbs -= currentFruit.carbohydrates
     console.log(currentFruit.carbohydrates)
     console.log(tCarbs)
@@ -94,6 +95,9 @@ function removeFromCombo(currentFruit) {
     totalCalories.textContent = tCal.toFixed(2)
     tSugar -= currentFruit.sugar
     totalSugar.textContent = tSugar.toFixed(2)
+    let maps = comboNames.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
+    comboVal.textContent = (Object.entries(maps))
+    console.log(maps)
 }
 
 fruitForm.addEventListener('submit', (e) => {
