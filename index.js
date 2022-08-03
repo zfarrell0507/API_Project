@@ -1,6 +1,21 @@
 const list = document.querySelector('div#fruit-list')
 const fruitForm = document.getElementById('new-fruit')
-fruitsArray = []
+let fruitsArray = []
+let currentFruit = {}
+
+/*const add = document.getElementById('add_btn')
+const remove = document.getElementById('remove_btn')
+let totalCarbs = document.getElementById('carbs')
+let totalProtein = document.querySelector('span#proteins')
+let totalFat = document.querySelector('span#total-fat')
+let totalCalories = document.querySelector('span#total-calories')
+let totalSugar = document.querySelector('span#total-sugar')
+let tCarbs = 0
+let tProtein = 0
+let tFat = 0
+let tCal = 0
+let tSugar = 0 */
+//const divDetail = document.querySelector('div#fruit-detail')
 
 fetch('http://localhost:3000/Fruits')
     .then(resp => resp.json())
@@ -20,6 +35,7 @@ function renderFruits(fruits) {
 }
 
 function renderDetails(fruit) {
+    currentFruit = fruit
     const img = document.querySelector('img#fruit_img')
     img.src = fruit.image
     const nameDis = document.querySelector('h2#fruit_name')
@@ -34,7 +50,29 @@ function renderDetails(fruit) {
     calorie.textContent = fruit.calories
     const sugar = document.querySelector('span#sugar')
     sugar.textContent = fruit.sugar
+    //add.addEventListener('click', (fruit) => fruitCombo(fruit))
+    //remove.addEventListener('click', (fruit) => removeFromCombo(fruit))
 }
+/*
+function fruitCombo(fruit) {
+    console.log(tCarbs)
+    console.log(fruit.target.carbohydrates.value)
+    tCarbs + fruit.target.carbohydrates
+    totalCarbs.textContent = tCarbs
+    console.log(tCarbs)
+    console.log(totalCarbs)
+    tProtein += parseInt(fruit.target.protein)
+    totalProtein.textContent = tProtein
+    tFat += parseInt(fruit.target.fat)
+    totalFat.textContent = tFat
+    tCal += parseInt(fruit.target.calories)
+    totalCalories.textContent = tCal
+    tSugar += parseInt(fruit.target.sugar)
+    totalSugar.textContent = tSugar
+}
+function removeFromCombo(fruit) {
+    console.log(fruit)
+}*/
 
 fruitForm.addEventListener('submit', (e) => {
     e.preventDefault()
