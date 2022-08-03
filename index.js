@@ -1,10 +1,12 @@
 const list = document.querySelector('div#fruit-list')
 const fruitForm = document.getElementById('new-fruit')
 let fruitsArray = []
-let currentFruit = {}
+let currentFruit = []
 
 const add = document.getElementById('add_btn')
+add.addEventListener('click', () => fruitCombo(currentFruit))
 const remove = document.getElementById('remove_btn')
+remove.addEventListener('click', () => removeFromCombo(currentFruit))
 let totalCarbs = document.getElementById('carbs')
 let totalProtein = document.querySelector('span#proteins')
 let totalFat = document.querySelector('span#total-fat')
@@ -14,7 +16,7 @@ let tCarbs = 0
 let tProtein = 0
 let tFat = 0
 let tCal = 0
-let tSugar = 0 
+let tSugar = 0
 //const divDetail = document.querySelector('div#fruit-detail')
 
 fetch('http://localhost:3000/Fruits')
@@ -36,6 +38,7 @@ function renderFruits(fruits) {
 
 function renderDetails(fruit) {
     currentFruit = fruit
+    console.log(currentFruit)
     const img = document.querySelector('img#fruit_img')
     img.src = fruit.image
     const nameDis = document.querySelector('h2#fruit_name')
@@ -48,35 +51,37 @@ function renderDetails(fruit) {
     fat.textContent = fruit.fat
     const calorie = document.querySelector('span#calories')
     calorie.textContent = fruit.calories
-    console.log(fruit.calories)
     const sugar = document.querySelector('span#sugar')
     sugar.textContent = fruit.sugar
-    add.addEventListener('click', () => fruitCombo(fruit))
-    remove.addEventListener('click', () => removeFromCombo(fruit))
 }
 
-function fruitCombo(fruit) {
-    tCarbs += fruit.carbohydrates
+function fruitCombo(currentFruit) {
+    console.log(currentFruit)
+    tCarbs += currentFruit.carbohydrates
+    console.log(currentFruit.carbohydrates)
+    console.log(tCarbs)
     totalCarbs.textContent = tCarbs.toFixed(2)
-    tProtein += fruit.protein
+    tProtein += currentFruit.protein
     totalProtein.textContent = tProtein.toFixed(2)
-    tFat += fruit.fat
+    tFat += currentFruit.fat
     totalFat.textContent = tFat.toFixed(2)
-    tCal += fruit.calories
+    tCal += currentFruit.calories
     totalCalories.textContent = tCal.toFixed(2)
-    tSugar += fruit.sugar
+    tSugar += currentFruit.sugar
     totalSugar.textContent = tSugar.toFixed(2)
 }
-function removeFromCombo(fruit) {
-    tCarbs -= fruit.carbohydrates
+function removeFromCombo(currentFruit) {
+    tCarbs -= currentFruit.carbohydrates
+    console.log(currentFruit.carbohydrates)
+    console.log(tCarbs)
     totalCarbs.textContent = tCarbs.toFixed(2)
-    tProtein -= fruit.protein
+    tProtein -= currentFruit.protein
     totalProtein.textContent = tProtein.toFixed(2)
-    tFat -= fruit.fat
+    tFat -= currentFruit.fat
     totalFat.textContent = tFat.toFixed(2)
-    tCal -= fruit.calories
+    tCal -= currentFruit.calories
     totalCalories.textContent = tCal.toFixed(2)
-    tSugar -= fruit.sugar
+    tSugar -= currentFruit.sugar
     totalSugar.textContent = tSugar.toFixed(2)
 }
 
