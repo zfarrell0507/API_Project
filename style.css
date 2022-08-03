@@ -41,7 +41,7 @@ body {
 }
 
 .detail-image {
-  height: 350px;
+  height: relative;
 }
 
 .name {
