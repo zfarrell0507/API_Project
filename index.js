@@ -71,8 +71,6 @@ function removeFromCombo(currentFruit) {
     let index = comboNames.indexOf(currentFruit.name);
     if (index > -1) {
         comboNames.splice(index, 1);
-    }
-    
     tCarbs -= currentFruit.carbohydrates
     totalCarbs.textContent = tCarbs.toFixed(2)
     tProtein -= currentFruit.protein
@@ -85,6 +83,10 @@ function removeFromCombo(currentFruit) {
     totalSugar.textContent = tSugar.toFixed(2)
     let maps = comboNames.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
     comboVal.textContent = (Object.entries(maps))
+    }
+    else {
+        alert("This fruit is no longer in the inventory")
+    }
 }
 
 fruitForm.addEventListener('submit', (e) => {
