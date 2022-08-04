@@ -1,6 +1,5 @@
 const list = document.querySelector('div#fruit-list')
 const fruitForm = document.getElementById('new-fruit')
-let fruitsArray = []
 let currentFruit = []
 let comboNames = []
 
@@ -23,23 +22,20 @@ const comboVal = document.getElementById('combo')
 fetch('http://localhost:3000/Fruits')
     .then(resp => resp.json())
     .then(fruits => {
-        renderFruits(fruits)
+        fruits.forEach(renderFruits)
         renderDetails(fruits[0])
-        fruitsArray
     })
 
-function renderFruits(fruits) {
-    fruits.forEach(fruit => {
+function renderFruits(fruit) {
         const name = document.createElement('h2')
         name.textContent = fruit.name
         list.append(name)
         name.addEventListener('click', () => renderDetails(fruit))
-    })
+    
 }
 
 function renderDetails(fruit) {
     currentFruit = fruit
-    console.log(currentFruit)
     const img = document.querySelector('img#fruit_img')
     img.src = fruit.image
     const nameDis = document.querySelector('h2#fruit_name')
@@ -57,12 +53,8 @@ function renderDetails(fruit) {
 }
 
 function fruitCombo(currentFruit) {
-    console.log(currentFruit)
     comboNames.push(currentFruit.name)
-    console.log(comboNames)
     tCarbs += currentFruit.carbohydrates
-    console.log(currentFruit.carbohydrates)
-    console.log(tCarbs)
     totalCarbs.textContent = tCarbs.toFixed(2)
     tProtein += currentFruit.protein
     totalProtein.textContent = tProtein.toFixed(2)
@@ -74,18 +66,14 @@ function fruitCombo(currentFruit) {
     totalSugar.textContent = tSugar.toFixed(2)
     let map = comboNames.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
     comboVal.textContent = (Object.entries(map))
-    console.log(map)
 }
 function removeFromCombo(currentFruit) {
     let index = comboNames.indexOf(currentFruit.name);
     if (index > -1) {
         comboNames.splice(index, 1);
     }
-
-    console.log(comboNames)
+    
     tCarbs -= currentFruit.carbohydrates
-    console.log(currentFruit.carbohydrates)
-    console.log(tCarbs)
     totalCarbs.textContent = tCarbs.toFixed(2)
     tProtein -= currentFruit.protein
     totalProtein.textContent = tProtein.toFixed(2)
@@ -97,7 +85,6 @@ function removeFromCombo(currentFruit) {
     totalSugar.textContent = tSugar.toFixed(2)
     let maps = comboNames.reduce((cnt, cur) => (cnt[cur] = cnt[cur] + 1 || 1, cnt), {});
     comboVal.textContent = (Object.entries(maps))
-    console.log(maps)
 }
 
 fruitForm.addEventListener('submit', (e) => {
@@ -105,13 +92,19 @@ fruitForm.addEventListener('submit', (e) => {
     let newFruit = {
         image: e.target.image.value,
         name: e.target.name.value,
-        carbohydrates: e.target.carbohydrates.value,
-        protein: e.target.protein.value,
-        fat: e.target.new-fat.value,
-        calories: e.target.calories.value,
-        sugar: e.target.sugar.value
+        carbohydrates: parseInt(e.target.carbohydrates.value),
+        protein: parseInt(e.target.protein.value),
+        fat: parseInt(e.target['new-fat'].value),
+        calories: parseInt(e.target.calories.value),
+        sugar: parseInt(e.target.sugar.value)
     }
     fruitForm.reset()
-    fruitsArray.push(newFruit)
-    renderFruits(fruitsArray)
+    
+    fetch('http://localhost:3000/Fruits', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newFruit)
+    })
+    .then(resp => resp.json())
+    .then(fruit => renderFruits(fruit))
 })
